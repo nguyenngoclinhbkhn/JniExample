@@ -1,0 +1,26 @@
+- Create folder jni
+- Create file Android.mk with content
+    LOCAL_PATH := $(call my-dir)
+
+    include $(CLEAR_VARS)
+
+    LOCAL_MODULE    := keys
+    LOCAL_SRC_FILES := keys.c // name your file code C
+
+    include $(BUILD_SHARED_LIBRARY)
+
+- Create file Application.mk with content
+    APP_ABI := all
+    APP_BUILD_SCRIPT :=Android.mk
+
+- Create file keys.c with sample content
+    #include <jni.h>
+
+    JNIEXPORT jstring JNICALL
+    Java_jp_co_jniexample_MainActivity_getStringHello(JNIEnv *env, jobject instance) {
+        return (*env)->  NewStringUTF(env, "Hello from nativeLib");
+    }
+    Java_(Pakage name and replace . to _ )_(name_function)
+- Open terminal
+- Setting ndk variable: export PATH=$PATH:{path to folder ndk specific}
+- In current terminal you setting ndk variable , go to folder jni and run ndk-buid
